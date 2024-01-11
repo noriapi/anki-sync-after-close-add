@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling", "hatch-zipped-directory"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sync-after-close-add"
+dynamic = ["version"]
+description = "Anki addon to sync after closing the add window"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "noriapi", email = "70106808+noriapi@users.noreply.github.com" },
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/noriapi/sync-after-close-add#readme"
+Issues = "https://github.com/noriapi/sync-after-close-add/issues"
+Source = "https://github.com/noriapi/sync-after-close-add"
+
+[tool.hatch.build.targets.zipped-directory]
+install-name = ""
+sources = ["/src/anki_silent_sync"]
+exclude = ["tests"]
+
+[tool.hatch.version]
+path = "src/sync_after_close_add/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = ["coverage[toml]>=6.5", "pytest", "aqt[qt6]>=2.1.54"]
+[tool.hatch.envs.default.scripts]
+build = "hatch build --target zipped-directory"
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = ["- coverage combine", "coverage report"]
+cov = ["test-cov", "cov-report"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.types]
+dependencies = ["mypy>=1.0.0"]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/sync_after_close_add tests}"
+
+[tool.coverage.run]
+source_pkgs = ["sync_after_close_add", "tests"]
+branch = true
+parallel = true
+omit = ["src/sync_after_close_add/__about__.py"]
+
+[tool.coverage.paths]
+sync_after_close_add = [
+  "src/sync_after_close_add",
+  "*/sync-after-close-add/src/sync_after_close_add",
+]
+tests = ["tests", "*/sync-after-close-add/tests"]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
