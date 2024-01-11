@@ -22,7 +22,7 @@ Source = "https://github.com/noriapi/sync-after-close-add"
 
 [tool.hatch.build.targets.zipped-directory]
 install-name = ""
-sources = ["/src/anki_silent_sync"]
+sources = ["./src/sync_after_close_add"]
 
 [tool.hatch.version]
 path = "src/sync_after_close_add/__about__.py"
