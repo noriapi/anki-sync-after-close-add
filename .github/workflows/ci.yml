@@ -32,3 +32,6 @@ jobs:
 
       - name: Run type check
         run: hatch run typecheck
+
+      - name: Test build
+        run: hatch run build
