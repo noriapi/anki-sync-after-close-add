@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sync-after-close-add"
-dynamic = ["version"]
+version = "0.1.0"
 description = "Anki addon to sync after closing the add window"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -24,8 +24,6 @@ Source = "https://github.com/noriapi/sync-after-close-add"
 install-name = ""
 sources = ["./src/sync_after_close_add"]
 
-[tool.hatch.version]
-path = "src/sync_after_close_add/__about__.py"
 
 [tool.hatch.envs.default]
 dependencies = ["aqt[qt6]>=2.1.54", "mypy>=1.0.0"]
