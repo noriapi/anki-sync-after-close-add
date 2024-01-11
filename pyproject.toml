@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sync-after-close-add"
-version = "0.1.0"
+version = "1.0.0"
 description = "Anki addon to sync after closing the add window"
 readme = "README.md"
 requires-python = ">=3.9"
